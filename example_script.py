@@ -40,9 +40,9 @@ if __name__ == '__main__':
         if getattr(args, key) is None:
             if key == "argument_1":
                 args.argument_1 = input("Please enter the first argument for the script: ")
-              if key == "argument_2":
+            if key == "argument_2":
                 args.argument_2 = input("Please enter the second argument for the script: ")
-              if key == "argument_3":
+            if key == "argument_3":
                 args.argument_3 = input("Please enter the third argument for the script: ")
                 
     # Print out the passed arguments
