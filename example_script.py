@@ -1,16 +1,17 @@
 # Example python script utilizing basic arguments
 
-# THe below are part of the python standard library
+# The below are part of the python standard library
+import os
 import argparse
 
 
 # Define function to parse arguments passed via the command line
 def parse():
     parser = argparse.ArgumentParser(
-        usage="{} [-a1 'argument_1'] [-a2 'argument_2'] [-a3 'argument_3']".format(os.path.basename(__file__)),
+        usage=f"{os.path.basename(__file__)} [-a1 'argument_1'] [-a2 'argument_2'] [-a3 'argument_3']",
         description="Commandline variables to streamline automation."
     )
-
+    
     # Add argument 1
     parser.add_argument("-a1", "--argument_1", dest="argument_1", action="store",
         type=str, required=False, help="The first argument of the script.")
@@ -18,7 +19,7 @@ def parse():
     # Add argument 2
     parser.add_argument("-a2", "--argument_2", dest="argument_2", action="store",
         type=str, required=False, help="The second argument of the script.")
-    
+   
     # Add argument 3
     parser.add_argument("-a3", "--argument_3", dest="argument_3", action="store",
         type=str, required=False, help="The third argument of the script.")
@@ -46,6 +47,6 @@ if __name__ == '__main__':
                 args.argument_3 = input("Please enter the third argument for the script: ")
                 
     # Print out the passed arguments
-    print("Here is argument 1: {}".format(argument_1))
-    print("Here is argument 2: {}".format(argument_2))
-    print("Here is argument 3: {}".format(argument_3))
+    print(f"Here is argument 1: {args.argument_1}")
+    print(f"Here is argument 2: {args.argument_2}")
+    print(f"Here is argument 3: {args.argument_3}")
