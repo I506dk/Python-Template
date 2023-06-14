@@ -12,16 +12,16 @@ def parse():
     )
 
     # Add argument 1
-    parser.add_argument("-a1", "--argument_1", dest="argument_1", action="store", type=str, required=False,
-        help="The first argument of the script.")
+    parser.add_argument("-a1", "--argument_1", dest="argument_1", action="store",
+        type=str, required=False, help="The first argument of the script.")
     
     # Add argument 2
-    parser.add_argument("-a2", "--argument_2", dest="argument_2", action="store", type=str, required=False,
-        help="The second argument of the script.")
+    parser.add_argument("-a2", "--argument_2", dest="argument_2", action="store",
+        type=str, required=False, help="The second argument of the script.")
     
     # Add argument 3
-    parser.add_argument("-a3", "--argument_3", dest="argument_3", action="store", type=str, required=False,
-        help="The third argument of the script.")
+    parser.add_argument("-a3", "--argument_3", dest="argument_3", action="store",
+        type=str, required=False, help="The third argument of the script.")
 
     return parser.parse_args()
 
