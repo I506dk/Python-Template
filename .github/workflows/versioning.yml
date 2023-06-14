@@ -1,0 +1,103 @@
+name: Latest Version
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+env:
+  REPO: ${{ github.repository }}
+  SCRIPT: ${{ github.event.repository.name }}
+
+jobs:
+  version:
+    strategy:
+      matrix:
+        os: [windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          # Fetch all commits
+          fetch-depth: 0
+      
+##### THE BELOW IS FOR CREATING EXECUTABLES #####
+#####           USE ONLY AS NEEDED          #####
+#################################################
+      # Setup the python version
+#      - name: Setup Python
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version: '3.10'
+#          architecture: 'x64'
+#          cache: 'pip'
+#          cache-dependency-path: |
+#            **/requirements*.txt
+            
+      # Install dependencies for python
+#      - name: Install dependencies
+#        run: |
+#          pip install -r requirements.txt
+#          pip install imageio
+#          pip install zstandard
+#          pip install ordered-set
+#          pip install nuitka
+#      - name: Build
+#        run : |
+#          python -m nuitka --standalone --assume-yes-for-downloads --output-dir=build --onefile --windows-icon-from-ico=secret_server.png ${{ env.SCRIPT }}.py
+#      - name: Upload artifact
+#        uses: actions/upload-artifact@v3.1.0
+#        with:
+#          name: ${{ runner.os }} Build
+#          path: |
+#            build/*.exe
+#            build/*.app/**/*
+      
+      # Download the executable
+#      - uses: actions/download-artifact@v3
+#        with:
+#          name: Windows Build
+#          path: .
+#################################################
+          
+      # Create semantic version
+      - name: Semantic Versioning
+        id: versioning
+        uses: PaulHatch/semantic-version@v5.0.3
+        with:
+          branch: main
+          tag_prefix: "v"
+          # A string which, if present in a git commit, indicates that a change represents a
+          # major (breaking) change, supports regular expressions wrapped with '/'
+          major_pattern: "Major"
+          # Same as above except indicating a minor change, supports regular expressions wrapped with '/'
+          minor_pattern: "Minor"
+          # Format for the version
+          format: "v${major}.${minor}.${patch}"
+
+      # Create new release
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ steps.versioning.outputs.version_tag }}
+          release_name: ${{ steps.versioning.outputs.version_tag }}
+      
+##### THE BELOW IS FOR UPLOADING THE EXECUTABLE #####
+#####################################################
+      
+      # Upload executable to the latest release
+#      - name: Upload Release Asset
+#        uses: actions/upload-release-asset@v1
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          upload_url: ${{ steps.create_release.outputs.upload_url }}
+#          asset_path: ${{ env.SCRIPT }}.exe
+#          asset_name: ${{ env.SCRIPT }}.exe
+#          asset_content_type: application/x-msdownload
+          
