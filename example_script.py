@@ -8,10 +8,10 @@ import os
 # Define function to parse arguments passed via the command line
 def parse():
     """ Define function to parse arguments passed via the command line """
+    script_name = os.path.basename(__file__)
+    
     parser = argparse.ArgumentParser(
-        usage=f"{
-            os.path.basename(__file__)
-        } [-a1 'argument_1'] [-a2 'argument_2'] [-a3 'argument_3']",
+        usage=f"{script_name} [-a1 'argument_1'] [-a2 'argument_2'] [-a3 'argument_3']",
         description="Commandline variables to streamline automation."
     )
 
