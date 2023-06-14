@@ -1,8 +1,8 @@
 # Example python script utilizing basic arguments
 
 # The below are part of the python standard library
-import os
 import argparse
+import os
 
 
 # Define function to parse arguments passed via the command line
@@ -11,7 +11,7 @@ def parse():
         usage=f"{os.path.basename(__file__)} [-a1 'argument_1'] [-a2 'argument_2'] [-a3 'argument_3']",
         description="Commandline variables to streamline automation."
     )
-    
+
     # Add argument 1
     parser.add_argument(
         "-a1",
@@ -22,7 +22,7 @@ def parse():
         required=False,
         help="The first argument of the script."
     )
-    
+
     # Add argument 2
     parser.add_argument(
         "-a2",
@@ -33,7 +33,7 @@ def parse():
         required=False,
         help="The second argument of the script."
     )
-   
+
     # Add argument 3
     parser.add_argument(
         "-a3",
@@ -72,7 +72,7 @@ if __name__ == "__main__":
                 args.argument_3 = input(
                     "Please enter the third argument for the script: "
                 )
-                
+
     # Print out the passed arguments
     print(f"Here is argument 1: {args.argument_1}")
     print(f"Here is argument 2: {args.argument_2}")
