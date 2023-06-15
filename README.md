@@ -77,4 +77,5 @@ If python isn't found or won't start, make sure that it is added to PATH when in
 - [x] Configure code scanning with CodeQL
 - [x] Configure Semantic versioning
 - [x] Configure releases
+- [x] Configure Linting
 - [ ] Use as a template for future repositories
