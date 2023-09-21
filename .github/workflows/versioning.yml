@@ -5,6 +5,8 @@ on:
       - main
     tags:
       - 'v*'
+  #workflow_call:
+
 env:
   REPO: ${{ github.repository }}
   SCRIPT: ${{ github.event.repository.name }}
@@ -65,7 +67,9 @@ jobs:
       # Create semantic version
       - name: Semantic Versioning
         id: versioning
-        uses: PaulHatch/semantic-version@v5.0.3
+        uses: PaulHatch/semantic-version@d3c0da227fc1698dd10b7f64df22cfd8d9e8e196 # v5.2.1
+        # Hashes for the current release can be gotten using the following:
+        # git ls-remote https://github.com/PaulHatch/semantic-version.git HEAD
         with:
           branch: main
           tag_prefix: "v"
