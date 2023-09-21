@@ -1,2 +1,4 @@
 # And example requirements file
-example_package>=101
+#example_package>=101
+# The requests library
+requests>=2.31.0
